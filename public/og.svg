@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" fill="none">
+  <rect width="1200" height="630" fill="#0B0B0D"/>
+  <rect x="70" y="80" width="1060" height="470" rx="28" fill="#111114" stroke="#2A2A2F"/>
+  <rect x="110" y="120" width="64" height="64" rx="16" fill="#D10F1B"/>
+  <text x="195" y="165" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="44" font-weight="800" fill="#FFFFFF">Chambonnet Comercial</text>
+  <text x="110" y="240" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="28" font-weight="600" fill="#E5E7EB">Consultores inmobiliarios en Panamá</text>
+  <text x="110" y="290" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="22" font-weight="500" fill="#9CA3AF">Compra, vende y alquila con procesos claros y acompañamiento en todo momento.</text>
+  <rect x="110" y="350" width="380" height="72" rx="18" fill="#D10F1B"/>
+  <text x="150" y="398" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="26" font-weight="800" fill="#FFFFFF">Ver propiedades en redes</text>
+  <text x="110" y="485" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial" font-size="18" font-weight="600" fill="#9CA3AF">Bellavista • San Francisco • Panamá</text>
+</svg>
