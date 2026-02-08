@@ -2,10 +2,23 @@ import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
-import { CONTACT, SITE } from "@/lib/site";
-import { IconBadgeCheck, IconBolt, IconBuilding, IconClipboard, IconHome, IconKey, IconWrench } from "@/components/Icons";
+import QuickWhatsAppForm from "@/components/QuickWhatsAppForm";
+import { CONTACT, SITE, whatsappLink } from "@/lib/site";
+import {
+  IconBadgeCheck,
+  IconBolt,
+  IconBuilding,
+  IconClipboard,
+  IconHome,
+  IconKey,
+  IconWrench
+} from "@/components/Icons";
 
 export default function Page() {
+  const waGeneric = whatsappLink(
+    "Hola Chambonnet Comercial, quiero información sobre propiedades en Panamá. ¿Me pueden orientar con el proceso y opciones disponibles? Gracias."
+  );
+
   return (
     <>
       {/* HERO */}
@@ -15,7 +28,7 @@ export default function Page() {
           <div className="hidden md:block h-full w-full">
             <Image
               src="/hero-desktop.jpg"
-              alt="Propiedades en Panamá (imagen placeholder)"
+              alt="Propiedades en Panamá"
               fill
               priority
               className="object-cover"
@@ -27,7 +40,7 @@ export default function Page() {
           <div className="block md:hidden h-full w-full">
             <Image
               src="/hero-mobile.jpg"
-              alt="Propiedades en Panamá (imagen placeholder)"
+              alt="Propiedades en Panamá"
               fill
               priority
               className="object-cover"
@@ -94,6 +107,7 @@ export default function Page() {
                 </div>
               </Reveal>
 
+              {/* ✅ CTA: WhatsApp verde */}
               <Reveal delayMs={380}>
                 <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                   <a
@@ -102,9 +116,12 @@ export default function Page() {
                   >
                     Ver propiedades en redes
                   </a>
+
                   <a
-                    href="#contacto"
-                    className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70"
+                    href={waGeneric}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-white/70"
                   >
                     WhatsApp
                   </a>
@@ -116,45 +133,27 @@ export default function Page() {
               </Reveal>
             </div>
 
+            {/* ✅ HERO right: mini-form tipo referencia */}
             <Reveal delayMs={220}>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
                 <div className="flex items-center justify-between gap-3">
-                  <p className="text-sm font-bold">Tu próxima propiedad, con procesos claros</p>
+                  <p className="text-sm font-bold">Consulta rápida</p>
                   <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
-                    Premium-simple
+                    WhatsApp
                   </span>
                 </div>
 
-                <div className="mt-4 rounded-2xl border border-white/10 bg-black/30 p-4">
-                  <p className="text-sm text-white/80">
-                    Servicio ideal si buscas en Google una propiedad en Panamá y quieres un acompañamiento directo, con
-                    soluciones fáciles y pasos definidos.
-                  </p>
+                <p className="mt-3 text-sm text-white/80">
+                  Completa 2–3 datos y te atendemos más rápido con procesos claros y acompañamiento.
+                </p>
 
-                  <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                      <p className="text-xs font-semibold text-white/70">Enfoque</p>
-                      <p className="mt-1 text-sm font-bold">Compra / Venta / Alquiler</p>
-                    </div>
-                    <div className="rounded-xl border border-white/10 bg-white/5 p-4">
-                      <p className="text-xs font-semibold text-white/70">Administración</p>
-                      <p className="mt-1 text-sm font-bold">Gestión completa</p>
-                    </div>
-                  </div>
-
-                  <div className="mt-4 rounded-xl border border-white/10 bg-white/5 p-4">
-                    <p className="text-xs font-semibold text-white/70">Oferta</p>
-                    <p className="mt-1 text-sm font-bold">Conoce tips para comprar propiedades en Panamá</p>
-                  </div>
+                <div className="mt-4">
+                  <QuickWhatsAppForm />
                 </div>
 
-                <div className="mt-4 flex flex-wrap gap-2 text-xs">
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-white/75">
-                    TODO: Reemplazar imágenes del hero
-                  </span>
-                  <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1 text-white/75">
-                    TODO: Actualizar redes y WhatsApp en <code className="font-mono">site.ts</code>
-                  </span>
+                <div className="mt-4 rounded-xl border border-white/10 bg-black/30 p-4">
+                  <p className="text-xs font-semibold text-white/70">Oferta</p>
+                  <p className="mt-1 text-sm font-bold">Conoce tips para comprar propiedades en Panamá</p>
                 </div>
               </div>
             </Reveal>
@@ -212,25 +211,62 @@ export default function Page() {
         </div>
       </section>
 
+      {/* ✅ GALERÍA (usa tus imágenes) */}
+      <section className="bg-black/[0.02]">
+        <div className="mx-auto max-w-6xl px-4 py-16">
+          <Reveal>
+            <h2 className="text-2xl font-extrabold text-brand-black md:text-3xl">Propiedades</h2>
+          </Reveal>
+          <Reveal delayMs={80}>
+            <p className="mt-3 max-w-2xl text-black/70">
+              Residencial, playa y comercial. Cuéntanos lo que buscas y te guiamos con pasos definidos.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            <PropertyCard
+              img="/prop-playa.jpg"
+              title="Casa de playa"
+              desc="Opciones para disfrutar y/o invertir con acompañamiento completo."
+            />
+            <PropertyCard
+              img="/prop-residencias.jpg"
+              title="Residencias"
+              desc="Apartamentos y casas en zonas clave con proceso claro."
+            />
+            <PropertyCard
+              img="/prop-comercial.jpg"
+              title="Comercial"
+              desc="Oficinas, locales y espacios para negocios."
+            />
+          </div>
+
+          <div className="mt-8">
+            <a
+              href={waGeneric}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-brand-red/40"
+            >
+              Consultar por WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* CÓMO FUNCIONA */}
-      <section id="como-funciona" className="scroll-mt-24 bg-black/[0.02]">
+      <section id="como-funciona" className="scroll-mt-24 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <Reveal>
             <h2 className="text-2xl font-extrabold text-brand-black md:text-3xl">Cómo funciona</h2>
           </Reveal>
           <Reveal delayMs={80}>
-            <p className="mt-3 max-w-2xl text-black/70">
-              Un camino simple y claro para avanzar con confianza.
-            </p>
+            <p className="mt-3 max-w-2xl text-black/70">Un camino simple y claro para avanzar con confianza.</p>
           </Reveal>
 
           <div className="mt-10 grid gap-4 md:grid-cols-3">
             <StepCard step="Paso 1" title="Quiero comprar o alquilar" desc="Cuéntanos qué buscas y en qué plazo." />
-            <StepCard
-              step="Paso 2"
-              title="Elige el tipo"
-              desc="Apartamento, casa, terreno, galera u oficina."
-            />
+            <StepCard step="Paso 2" title="Elige el tipo" desc="Apartamento, casa, terreno, galera u oficina." />
             <StepCard
               step="Paso 3"
               title="Define presupuesto y ubicación"
@@ -249,11 +285,45 @@ export default function Page() {
         </div>
       </section>
 
+      {/* ✅ CTA INTERMEDIO (pedido por el cliente) */}
+      <section aria-label="CTA intermedio" className="border-y border-black/10 bg-brand-black text-white">
+        <div className="mx-auto max-w-6xl px-4 py-10">
+          <div className="grid gap-6 md:grid-cols-2 md:items-center">
+            <div>
+              <h2 className="text-2xl font-extrabold">¿Quieres comprar o alquilar? Contáctanos</h2>
+              <p className="mt-2 text-white/80">
+                Te acompañamos con pasos claros para avanzar con confianza.
+              </p>
+            </div>
+
+            <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
+              <a
+                href={waGeneric}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-white/70"
+              >
+                WhatsApp
+              </a>
+
+              <a
+                href="#contacto"
+                className="inline-flex items-center justify-center rounded-xl border border-white/20 bg-white/5 px-5 py-3 text-sm font-extrabold text-white backdrop-blur transition hover:bg-white/10 focus:outline-none focus:ring-2 focus:ring-white/70"
+              >
+                Ir al formulario
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* TIPS */}
       <section id="tips" className="scroll-mt-24 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <Reveal>
-            <h2 className="text-2xl font-extrabold text-brand-black md:text-3xl">Tips para comprar propiedades en Panamá</h2>
+            <h2 className="text-2xl font-extrabold text-brand-black md:text-3xl">
+              Tips para comprar propiedades en Panamá
+            </h2>
           </Reveal>
           <Reveal delayMs={80}>
             <p className="mt-3 max-w-2xl text-black/70">
@@ -293,8 +363,8 @@ export default function Page() {
             <div className="mt-10 rounded-2xl border border-black/10 bg-white p-6 shadow-soft">
               <div className="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
                 <div>
-                  <p className="text-sm font-extrabold text-brand-black">CTA principal</p>
-                  <p className="mt-1 text-black/70">Ver propiedades y más tips directamente en nuestras redes.</p>
+                  <p className="text-sm font-extrabold text-brand-black">Ver propiedades en redes</p>
+                  <p className="mt-1 text-black/70">Tips y propiedades publicadas con frecuencia.</p>
                 </div>
 
                 <div className="flex flex-wrap gap-2">
@@ -303,7 +373,7 @@ export default function Page() {
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-                    aria-label="Abrir Instagram (placeholder)"
+                    aria-label="Abrir Instagram"
                   >
                     Instagram
                   </a>
@@ -312,7 +382,7 @@ export default function Page() {
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-                    aria-label="Abrir Facebook (placeholder)"
+                    aria-label="Abrir Facebook"
                   >
                     Facebook
                   </a>
@@ -321,16 +391,24 @@ export default function Page() {
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-                    aria-label="Abrir TikTok (placeholder)"
+                    aria-label="Abrir TikTok"
                   >
                     TikTok
                   </a>
+
+                  {CONTACT.YOUTUBE_URL ? (
+                    <a
+                      href={CONTACT.YOUTUBE_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
+                      aria-label="Abrir YouTube"
+                    >
+                      YouTube
+                    </a>
+                  ) : null}
                 </div>
               </div>
-
-              <p className="mt-4 text-xs text-black/60">
-                TODO: Cambiar URLs reales en <code className="font-mono">/src/lib/site.ts</code>
-              </p>
             </div>
           </Reveal>
         </div>
@@ -363,26 +441,22 @@ export default function Page() {
               </div>
             </Reveal>
 
+            {/* ✅ LOGOS reales */}
             <Reveal delayMs={120}>
               <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-soft">
                 <p className="text-sm font-extrabold text-brand-black">Miembros ACOBIR y MLS</p>
                 <p className="mt-1 text-sm text-black/70">
-                  Respaldo institucional (logos como placeholders, se reemplazan al recibir los archivos finales).
+                  Respaldo institucional para operar con confianza y procesos claros.
                 </p>
 
-                <div className="mt-6 flex flex-wrap gap-3">
+                <div className="mt-6 flex flex-wrap items-center gap-3">
                   <div className="rounded-xl border border-black/10 bg-white p-3">
-                    <Image src="/logo-acobir.svg" alt="Logo ACOBIR (placeholder)" width={160} height={44} />
+                    <Image src="/acobir.png" alt="ACOBIR" width={180} height={60} />
                   </div>
                   <div className="rounded-xl border border-black/10 bg-white p-3">
-                    <Image src="/logo-mls.svg" alt="Logo MLS (placeholder)" width={160} height={44} />
+                    <Image src="/mls.png" alt="MLS" width={180} height={60} />
                   </div>
                 </div>
-
-                <p className="mt-4 text-xs text-black/60">
-                  TODO: Reemplazar <code className="font-mono">/public/logo-acobir.svg</code> y{" "}
-                  <code className="font-mono">/public/logo-mls.svg</code> por los logos reales.
-                </p>
               </div>
             </Reveal>
           </div>
@@ -440,12 +514,16 @@ export default function Page() {
                 </p>
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
+                  {/* ✅ botón WhatsApp verde */}
                   <a
-                    href="#contacto"
-                    className="inline-flex items-center justify-center rounded-xl bg-brand-red px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-brand-red/40"
+                    href={waGeneric}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center justify-center rounded-xl bg-green-600 px-5 py-3 text-sm font-extrabold text-white shadow-soft transition hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-brand-red/40"
                   >
                     Escribir por WhatsApp
                   </a>
+
                   <Link
                     href="/terminos"
                     className="inline-flex items-center justify-center rounded-xl border border-black/10 bg-white px-5 py-3 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
@@ -455,9 +533,9 @@ export default function Page() {
                 </div>
 
                 <div className="mt-6 rounded-xl border border-black/10 bg-black/[0.02] p-4">
-                  <p className="text-xs font-semibold text-black/60">Recordatorio</p>
+                  <p className="text-xs font-semibold text-black/60">Contacto</p>
                   <p className="mt-1 text-sm text-black/70">
-                    TODO: Cambiar redes y WhatsApp en <code className="font-mono">/src/lib/site.ts</code> para que todo quede listo.
+                    WhatsApp: <span className="font-extrabold">{CONTACT.PHONE}</span>
                   </p>
                 </div>
               </div>
@@ -527,11 +605,32 @@ function FaqItem({ q, a }: { q: string; a: string }) {
       <summary className="cursor-pointer list-none font-extrabold text-brand-black outline-none">
         <span className="align-middle">{q}</span>
         <span className="float-right ml-4 inline-flex h-7 w-7 items-center justify-center rounded-lg border border-black/10 bg-black/[0.02] text-brand-black">
-          <span className="group-open:hidden" aria-hidden="true">+</span>
-          <span className="hidden group-open:inline" aria-hidden="true">–</span>
+          <span className="group-open:hidden" aria-hidden="true">
+            +
+          </span>
+          <span className="hidden group-open:inline" aria-hidden="true">
+            –
+          </span>
         </span>
       </summary>
       <p className="mt-3 text-sm text-black/70">{a}</p>
     </details>
+  );
+}
+
+function PropertyCard({ img, title, desc }: { img: string; title: string; desc: string }) {
+  return (
+    <Reveal>
+      <div className="overflow-hidden rounded-2xl border border-black/10 bg-white shadow-soft">
+        <div className="relative h-48">
+          <Image src={img} alt={title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+        </div>
+        <div className="p-5">
+          <p className="text-base font-extrabold text-brand-black">{title}</p>
+          <p className="mt-1 text-sm text-black/70">{desc}</p>
+        </div>
+      </div>
+    </Reveal>
   );
 }
