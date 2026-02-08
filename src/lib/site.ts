@@ -1,69 +1,73 @@
+// src/lib/site.ts
 export const SITE = {
   name: "Chambonnet Comercial",
+  // Mientras no haya dominio propio, dejamos el Vercel:
+  url: "https://chambonnet-comercial.vercel.app",
+  title: "Chambonnet Comercial | Consultores inmobiliarios en Panamá",
   description:
-    "Consultores inmobiliarios en Panamá. Compra, vende, alquila y administra propiedades con procesos claros y acompañamiento en todo momento.",
+    "Consultores inmobiliarios en Panamá. Compra, vende, alquila y administra propiedades con procesos claros y acompañamiento en todo momento. Zonas fuertes: Bellavista y San Francisco.",
   locale: "es_PA",
-  // TODO: Cambiar por el dominio final cuando esté listo
-  url: "https://chambonnetcomercial.com",
-  // OpenGraph image (placeholder)
-  ogImage: "/og.svg",
-
-  // Zonas ejemplo (copy + SEO)
-  zones: ["Bellavista", "San Francisco"],
-
-  // Dato fuerte
-  managedCount: 200
+  // Imagen para compartir (OpenGraph). Debe existir en /public:
+  ogImage: "/og.jpg",
+  // Logo para header/footer (puedes cambiar a /logo.svg si lo deseas):
+  logo: "/logo.png",
 };
 
 export const CONTACT = {
-  // TODO: Cambiar estos placeholders en cuanto el cliente los entregue
-  WHATSAPP_NUMBER: "50760000000", // Formato recomendado: código país + número, sin +, sin espacios. Ej: 5076XXXXXXX
-  INSTAGRAM_URL: "https://instagram.com/tu_cuenta",
-  FACEBOOK_URL: "https://facebook.com/tu_pagina",
-  TIKTOK_URL: "https://tiktok.com/@tu_cuenta",
-  YOUTUBE_URL: "", // Opcional. Si lo llenas, puedes usarlo para video en el futuro.
-  EMAIL: "correo@tudominio.com", // Opcional
-  PHONE: "+507 6000-0000" // Opcional (texto)
+  // WhatsApp wa.me necesita país + número, sin guiones:
+  whatsappNumber: "50760701881",
+  phoneDisplay: "+507 6070-1881",
+  email: "TODO@chambonnet.com", // TODO: si el cliente da un email real, cámbialo aquí
 };
 
-export const NAV = [
-  { label: "Inicio", href: "#inicio" },
-  { label: "Servicios", href: "#servicios" },
-  { label: "Cómo funciona", href: "#como-funciona" },
-  { label: "Tips", href: "#tips" },
-  { label: "FAQ", href: "#faq" },
-  { label: "Contacto", href: "#contacto" }
-] as const;
+export const SOCIAL = {
+  instagram:
+    "https://www.instagram.com/chambonnetcomercial?utm_source=qr&igsh=aHBmNWg1N3dzNTlm",
+  facebook: "https://www.facebook.com/share/1Bke9jcdab/",
+  tiktok: "https://www.tiktok.com/@jorgechambonnetrealtor?_r=1&_t=ZS-93hCEhVAALK",
+  youtube: "https://youtube.com/@jorgechambonnet?si=9bcqxcKhSQedevYU",
+};
 
-export function buildWhatsAppMessage(input: {
-  nombre: string;
-  telefono: string;
-  email: string;
+export const ASSETS = {
+  heroDesktop: "/hero-desktop.jpg",
+  heroMobile: "/hero-mobile.jpg",
+  acobirLogo: "/acobir.png",
+  mlsLogo: "/mls.png",
+  // Galería (puedes cambiar/añadir después):
+  gallery: [
+    { src: "/prop-playa.jpg", alt: "Casa de playa en Panamá" },
+    { src: "/prop-residencias.jpg", alt: "Residencias en Panamá" },
+    { src: "/prop-comercial.jpg", alt: "Oficinas y espacios comerciales" },
+  ],
+};
+
+export function waLink(message: string) {
+  return `https://wa.me/${CONTACT.whatsappNumber}?text=${encodeURIComponent(message)}`;
+}
+
+export function buildLeadMessage(input: {
+  nombre?: string;
+  telefono?: string;
+  email?: string;
   operacion?: string;
-  mensaje: string;
+  tipo?: string;
+  zona?: string;
+  presupuesto?: string;
+  mensaje?: string;
 }) {
   const lines = [
-    `Hola, soy ${input.nombre}.`,
-    `Teléfono: ${input.telefono}`,
-    `Email: ${input.email}`,
-    input.operacion ? `Operación: ${input.operacion}` : "",
+    "Hola Chambonnet Comercial, quiero información.",
+    input.operacion ? `• Operación: ${input.operacion}` : null,
+    input.tipo ? `• Tipo: ${input.tipo}` : null,
+    input.zona ? `• Zona: ${input.zona}` : null,
+    input.presupuesto ? `• Presupuesto: ${input.presupuesto}` : null,
+    input.nombre ? `• Nombre: ${input.nombre}` : null,
+    input.telefono ? `• Teléfono: ${input.telefono}` : null,
+    input.email ? `• Email: ${input.email}` : null,
+    input.mensaje ? `• Mensaje: ${input.mensaje}` : null,
     "",
-    input.mensaje.trim()
+    "¿Me pueden orientar con el proceso y opciones disponibles? Gracias.",
   ].filter(Boolean);
 
   return lines.join("\n");
-}
-
-export function whatsappLink(message: string) {
-  const num = (CONTACT.WHATSAPP_NUMBER || "").replace(/[^\d]/g, "") || "50760000000";
-  const text = encodeURIComponent(message);
-  return `https://wa.me/${num}?text=${text}`;
-}
-
-export function isPlaceholderUrl(url: string) {
-  return (
-    url.includes("instagram.com/tu_cuenta") ||
-    url.includes("facebook.com/tu_pagina") ||
-    url.includes("tiktok.com/@tu_cuenta")
-  );
 }
