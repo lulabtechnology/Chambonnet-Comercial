@@ -28,7 +28,17 @@ export default function Header() {
     <header className="sticky top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <a href="#inicio" className="flex items-center gap-3" aria-label="Ir al inicio">
-          <Image src={ASSETS.logo} alt="Chambonnet Comercial" width={220} height={44} priority />
+          <div className="relative h-10 w-[160px] sm:w-[180px]">
+  <Image
+    src={ASSETS.logo}
+    alt="Chambonnet Comercial"
+    fill
+    priority
+    className="object-contain"
+    sizes="180px"
+  />
+</div>
+
         </a>
 
         <nav className="hidden items-center gap-5 md:flex" aria-label="Navegación principal">
