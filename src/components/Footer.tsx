@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
-import { CONTACT } from "@/lib/site";
+import SocialLinks from "@/components/SocialLinks";
+import { CONTACT, ASSETS } from "@/lib/site";
 import { formatYearRange } from "@/lib/utils";
 import { buildWhatsAppMessage, whatsappLink } from "@/lib/site";
 
@@ -10,9 +11,9 @@ export default function Footer() {
   const quickMsg = buildWhatsAppMessage({
     nombre: "Cliente",
     telefono: "—",
-    email: "—",
+    email: "",
     operacion: "Consulta",
-    mensaje: "Hola, quiero ver propiedades y recibir guía con procesos claros. ¿Me ayudan, por favor?"
+    mensaje: "Hola, quiero ver propiedades y recibir guía con procesos claros. ¿Me ayudan, por favor?",
   });
 
   return (
@@ -20,51 +21,28 @@ export default function Footer() {
       <div className="mx-auto max-w-6xl px-4 py-10">
         <div className="grid gap-8 md:grid-cols-3">
           <div>
-            <Image src="/logo.svg" alt="Chambonnet Comercial" width={220} height={44} />
+            <Image src={ASSETS.logo} alt="Chambonnet Comercial" width={220} height={44} />
             <p className="mt-3 text-sm text-black/70">
-              Consultores inmobiliarios en Panamá. Compra, vende y alquila fácilmente con acompañamiento en todo momento.
+              Compra, vende, alquila y administra propiedades con procesos claros y acompañamiento en todo momento.
             </p>
           </div>
 
           <div>
             <p className="text-sm font-extrabold text-brand-black">Redes</p>
-            <div className="mt-3 flex flex-wrap gap-2">
-              <a
-                href={CONTACT.INSTAGRAM_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-              >
-                Instagram
-              </a>
-              <a
-                href={CONTACT.FACEBOOK_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-              >
-                Facebook
-              </a>
-              <a
-                href={CONTACT.TIKTOK_URL}
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-              >
-                TikTok
-              </a>
+            <div className="mt-3">
+              <SocialLinks variant="footer" />
             </div>
-
-            <p className="mt-3 text-xs text-black/60">
-              TODO: Cambiar URLs reales en <code className="font-mono">/src/lib/site.ts</code>
-            </p>
           </div>
 
           <div>
             <p className="text-sm font-extrabold text-brand-black">Contacto</p>
             <p className="mt-3 text-sm text-black/70">
-              Email: <span className="font-semibold">{CONTACT.EMAIL}</span>
-              <br />
+              {CONTACT.EMAIL ? (
+                <>
+                  Email: <span className="font-semibold">{CONTACT.EMAIL}</span>
+                  <br />
+                </>
+              ) : null}
               Teléfono: <span className="font-semibold">{CONTACT.PHONE}</span>
             </p>
 
@@ -77,12 +55,14 @@ export default function Footer() {
               >
                 WhatsApp
               </a>
+
               <Link
                 href="/privacidad"
                 className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
               >
                 Privacidad
               </Link>
+
               <Link
                 href="/terminos"
                 className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
@@ -95,9 +75,7 @@ export default function Footer() {
 
         <div className="mt-10 flex flex-col gap-2 border-t border-black/10 pt-6 text-xs text-black/60 md:flex-row md:items-center md:justify-between">
           <p>© {year} Chambonnet Comercial. Todos los derechos reservados.</p>
-          <p>
-            Hecho para conversión a redes + WhatsApp. Diseño premium-simple.
-          </p>
+          <p>Hecho para conversión a redes + WhatsApp. Diseño premium-simple.</p>
         </div>
       </div>
 
