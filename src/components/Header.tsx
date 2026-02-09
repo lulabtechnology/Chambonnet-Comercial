@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useEffect, useMemo, useState } from "react";
-import { NAV, whatsappLink } from "@/lib/site";
-import { buildWhatsAppMessage } from "@/lib/site";
+import SocialLinks from "@/components/SocialLinks";
+import { NAV, ASSETS, whatsappLink, buildWhatsAppMessage } from "@/lib/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
@@ -19,16 +19,16 @@ export default function Header() {
   const quickMsg = buildWhatsAppMessage({
     nombre: "Cliente",
     telefono: "—",
-    email: "—",
+    email: "",
     operacion: "Consulta",
-    mensaje: "Hola, quiero ver propiedades y recibir guía con procesos claros. ¿Me ayudan, por favor?"
+    mensaje: "Hola, quiero ver propiedades y recibir guía con procesos claros. ¿Me ayudan, por favor?",
   });
 
   return (
     <header className="sticky top-0 z-50 border-b border-black/10 bg-white/80 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3">
         <a href="#inicio" className="flex items-center gap-3" aria-label="Ir al inicio">
-          <Image src="/logo.svg" alt="Chambonnet Comercial" width={220} height={44} priority />
+          <Image src={ASSETS.logo} alt="Chambonnet Comercial" width={220} height={44} priority />
         </a>
 
         <nav className="hidden items-center gap-5 md:flex" aria-label="Navegación principal">
@@ -36,7 +36,7 @@ export default function Header() {
             <a
               key={it.href}
               href={it.href}
-              className="text-sm font-bold text-brand-black/80 hover:text-brand-black focus:outline-none focus:ring-2 focus:ring-brand-red/40 rounded-lg px-2 py-1"
+              className="rounded-lg px-2 py-1 text-sm font-bold text-brand-black/80 hover:text-brand-black focus:outline-none focus:ring-2 focus:ring-brand-red/40"
             >
               {it.label}
             </a>
@@ -44,6 +44,10 @@ export default function Header() {
         </nav>
 
         <div className="flex items-center gap-2">
+          <div className="hidden md:block">
+            <SocialLinks variant="header" />
+          </div>
+
           <a
             href={whatsappLink(quickMsg)}
             target="_blank"
@@ -65,9 +69,8 @@ export default function Header() {
         </div>
       </div>
 
-      {/* Mobile menu */}
       {open && (
-        <div className="md:hidden border-t border-black/10 bg-white">
+        <div className="border-t border-black/10 bg-white md:hidden">
           <nav className="mx-auto max-w-6xl px-4 py-4" aria-label="Navegación móvil">
             <div className="grid gap-2">
               {items.map((it) => (
@@ -81,6 +84,10 @@ export default function Header() {
                 </a>
               ))}
 
+              <div className="mt-2">
+                <SocialLinks variant="header" />
+              </div>
+
               <a
                 href={whatsappLink(quickMsg)}
                 target="_blank"
@@ -91,10 +98,6 @@ export default function Header() {
                 WhatsApp
               </a>
             </div>
-
-            <p className="mt-3 text-xs text-black/60">
-              TODO: Cambiar WhatsApp real en <code className="font-mono">/src/lib/site.ts</code>
-            </p>
           </nav>
         </div>
       )}
