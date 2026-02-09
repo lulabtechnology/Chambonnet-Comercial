@@ -4,6 +4,7 @@ import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import QuickWhatsAppForm from "@/components/QuickWhatsAppForm";
 import { CONTACT, SITE, whatsappLink } from "@/lib/site";
+import SocialLinks from "@/components/SocialLinks";
 import {
   IconBadgeCheck,
   IconBolt,
@@ -56,12 +57,13 @@ export default function Page() {
         <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <div>
-              <Reveal>
-                <p className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/5 px-3 py-1 text-sm text-white/85">
-                  <span className="h-2 w-2 rounded-full bg-brand-red" aria-hidden="true" />
-                  Consultores inmobiliarios en Panamá
-                </p>
-              </Reveal>
+        <Reveal>
+  <div className="flex flex-col gap-3">
+    <p className="text-sm font-extrabold text-white/85">Síguenos y mira propiedades:</p>
+    <SocialLinks variant="hero" />
+  </div>
+</Reveal>
+
 
               <Reveal delayMs={80}>
                 <h1 className="mt-4 text-3xl font-extrabold leading-tight md:text-5xl">
