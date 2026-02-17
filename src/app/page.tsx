@@ -14,6 +14,28 @@ import {
   IconKey,
   IconWrench
 } from "@/components/Icons";
+export const metadata: Metadata = {
+  title: "Consultores inmobiliarios en Panamá",
+  description:
+    "Compra, vende, alquila o administra propiedades en Panamá con procesos claros y atención personalizada. Mira propiedades en redes y contáctanos por WhatsApp.",
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    locale: "es_PA",
+    url: "/",
+    title: "Consultores inmobiliarios en Panamá | Chambonnet Comercial",
+    description:
+      "Compra, vende, alquila o administra propiedades en Panamá con procesos claros y atención personalizada. Mira propiedades en redes y contáctanos por WhatsApp.",
+    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Chambonnet Comercial" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Consultores inmobiliarios en Panamá | Chambonnet Comercial",
+    description:
+      "Compra, vende, alquila o administra propiedades en Panamá con procesos claros y atención personalizada. Mira propiedades en redes y contáctanos por WhatsApp.",
+    images: ["/og.jpg"],
+  },
+};
 
 export default function Page() {
   const waGeneric = whatsappLink(
