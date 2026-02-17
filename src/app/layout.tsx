@@ -12,41 +12,61 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE.url),
-  title: "Consultores inmobiliarios en Panamá | Chambonnet Comercial",
-  description: SITE.description,
-  alternates: {
-    canonical: "/"
+
+  title: {
+    default: `${SITE.name} | Consultores inmobiliarios en Panamá`,
+    template: `%s | ${SITE.name}`,
   },
+
+  description: SITE.description,
+
+  alternates: {
+    canonical: "/",
+  },
+
+  keywords: [
+    "consultores inmobiliarios en Panamá",
+    "propiedades en Panamá",
+    "venta de propiedades Panamá",
+    "alquiler de propiedades Panamá",
+    "administración de propiedades Panamá",
+    "Chambonnet Comercial",
+  ],
+
   openGraph: {
     type: "website",
     locale: SITE.locale,
     url: "/",
     siteName: SITE.name,
-    title: "Consultores inmobiliarios en Panamá | Chambonnet Comercial",
+    title: `${SITE.name} | Consultores inmobiliarios en Panamá`,
     description: SITE.description,
     images: [
       {
         url: SITE.ogImage,
         width: 1200,
         height: 630,
-        alt: "Chambonnet Comercial"
-      }
-    ]
+        alt: SITE.name,
+      },
+    ],
   },
+
   twitter: {
     card: "summary_large_image",
-    title: "Consultores inmobiliarios en Panamá | Chambonnet Comercial",
+    title: `${SITE.name} | Consultores inmobiliarios en Panamá`,
     description: SITE.description,
-    images: [SITE.ogImage]
+    images: [SITE.ogImage],
   },
+
   robots: {
     index: true,
-    follow: true
+    follow: true,
   },
+
   other: {
-    "theme-color": "#D10F1B"
-  }
+    "theme-color": "#D10F1B",
+  },
 };
+
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const jsonLd = {
