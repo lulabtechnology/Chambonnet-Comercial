@@ -17,6 +17,7 @@ export default function SocialLinks({ variant = "hero" }: { variant?: Variant })
     { label: "Instagram", href: CONTACT.INSTAGRAM_URL, Icon: InstagramIcon },
     { label: "Facebook", href: CONTACT.FACEBOOK_URL, Icon: FacebookIcon },
     { label: "TikTok", href: CONTACT.TIKTOK_URL, Icon: TikTokIcon },
+    { label: "YouTube", href: CONTACT.YOUTUBE_URL, Icon: YouTubeIcon },
   ].filter((x) => !!x.href);
 
   return (
@@ -59,6 +60,14 @@ function TikTokIcon({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
       <path d="M14 3c.4 3.3 2.3 5.2 5 5.5V12c-1.8 0-3.5-.6-5-1.8V16c0 3.3-2.7 6-6 6s-6-2.7-6-6 2.7-6 6-6c.4 0 .8 0 1.2.1v3.4c-.4-.1-.8-.2-1.2-.2-1.7 0-3 1.3-3 3s1.3 3 3 3 3-1.3 3-3V3h3z" />
+    </svg>
+  );
+}
+
+function YouTubeIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" className={className} aria-hidden="true">
+      <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.8 4.6 12 4.6 12 4.6s-5.8 0-7.5.5A3 3 0 0 0 2.4 7.2 31.3 31.3 0 0 0 2 12c0 1.6.1 3.2.4 4.8a3 3 0 0 0 2.1 2.1c1.7.5 7.5.5 7.5.5s5.8 0 7.5-.5a3 3 0 0 0 2.1-2.1c.3-1.6.4-3.2.4-4.8s-.1-3.2-.4-4.8zM10 15.2V8.8L16 12l-6 3.2z" />
     </svg>
   );
 }
