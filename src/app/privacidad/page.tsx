@@ -1,8 +1,29 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { SITE } from "@/lib/site";
 
-export const metadata = {
-  title: "Privacidad | Chambonnet Comercial",
-  description: "Política de privacidad (placeholder) de Chambonnet Comercial."
+export const metadata: Metadata = {
+  title: "Privacidad",
+  description:
+    "Política de privacidad de Chambonnet Comercial. Información sobre el uso de enlaces a WhatsApp y redes sociales y cómo se maneja la información compartida.",
+  alternates: { canonical: "/privacidad" },
+  openGraph: {
+    type: "website",
+    locale: "es_PA",
+    url: "/privacidad",
+    title: "Privacidad | Chambonnet Comercial",
+    description:
+      "Política de privacidad de Chambonnet Comercial. Información sobre el uso de enlaces a WhatsApp y redes sociales y cómo se maneja la información compartida.",
+    images: [{ url: SITE.ogImage, width: 1200, height: 630, alt: "Chambonnet Comercial" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Privacidad | Chambonnet Comercial",
+    description:
+      "Política de privacidad de Chambonnet Comercial. Información sobre el uso de enlaces a WhatsApp y redes sociales y cómo se maneja la información compartida.",
+    images: [SITE.ogImage],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function PrivacidadPage() {
@@ -26,9 +47,7 @@ export default function PrivacidadPage() {
           <span className="font-extrabold text-brand-black">3) Enlaces externos:</span> redes sociales pueden tener sus
           propias políticas de privacidad.
         </p>
-        <p className="text-xs text-black/60">
-          TODO: reemplazar este contenido por el texto legal final del cliente.
-        </p>
+        <p className="text-xs text-black/60">TODO: reemplazar este contenido por el texto legal final del cliente.</p>
       </div>
 
       <div className="mt-10">
