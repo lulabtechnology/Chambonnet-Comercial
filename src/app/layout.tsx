@@ -3,11 +3,11 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import { CONTACT, SITE } from "@/lib/site";
+import { CONTACT, SITE, ASSETS } from "@/lib/site";
 
 const inter = Inter({
   subsets: ["latin"],
-  display: "swap"
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -67,9 +67,15 @@ export const metadata: Metadata = {
   },
 };
 
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  const jsonLd = {
+  const sameAs = [
+    CONTACT.INSTAGRAM_URL,
+    CONTACT.FACEBOOK_URL,
+    CONTACT.TIKTOK_URL,
+    CONTACT.YOUTUBE_URL,
+  ].filter(Boolean);
+
+  const jsonLd: Record<string, any> = {
     "@context": "https://schema.org",
     "@type": "RealEstateAgent",
     name: SITE.name,
@@ -79,12 +85,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     address: {
       "@type": "PostalAddress",
       addressCountry: "PA",
-      addressLocality: "Panamá"
+      addressLocality: "Panamá",
     },
     telephone: CONTACT.PHONE,
-    email: CONTACT.EMAIL,
-    sameAs: [CONTACT.INSTAGRAM_URL, CONTACT.FACEBOOK_URL, CONTACT.TIKTOK_URL].filter(Boolean)
+    sameAs,
+    // Logo público (ruta en /public)
+    logo: new URL(ASSETS.logo, SITE.url).toString(),
   };
+
+  if (CONTACT.EMAIL) jsonLd.email = CONTACT.EMAIL;
 
   return (
     <html lang="es">
