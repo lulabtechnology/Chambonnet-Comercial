@@ -1,8 +1,29 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+import { SITE } from "@/lib/site";
 
-export const metadata = {
-  title: "Términos | Chambonnet Comercial",
-  description: "Términos y condiciones (placeholder) de Chambonnet Comercial."
+export const metadata: Metadata = {
+  title: "Términos y condiciones",
+  description:
+    "Términos y condiciones de uso del sitio de Chambonnet Comercial. Información general sobre el alcance del contenido y la comunicación vía WhatsApp y redes.",
+  alternates: { canonical: "/terminos" },
+  openGraph: {
+    type: "website",
+    locale: "es_PA",
+    url: "/terminos",
+    title: "Términos | Chambonnet Comercial",
+    description:
+      "Términos y condiciones de uso del sitio de Chambonnet Comercial. Información general sobre el alcance del contenido y la comunicación vía WhatsApp y redes.",
+    images: [{ url: SITE.ogImage, width: 1200, height: 630, alt: "Chambonnet Comercial" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Términos | Chambonnet Comercial",
+    description:
+      "Términos y condiciones de uso del sitio de Chambonnet Comercial. Información general sobre el alcance del contenido y la comunicación vía WhatsApp y redes.",
+    images: [SITE.ogImage],
+  },
+  robots: { index: true, follow: true },
 };
 
 export default function TerminosPage() {
@@ -26,9 +47,7 @@ export default function TerminosPage() {
           <span className="font-extrabold text-brand-black">3) Exactitud:</span> se busca mantener información clara y
           actualizada; condiciones finales se definen caso a caso.
         </p>
-        <p className="text-xs text-black/60">
-          TODO: reemplazar este contenido por el texto legal final del cliente.
-        </p>
+        <p className="text-xs text-black/60">TODO: reemplazar este contenido por el texto legal final del cliente.</p>
       </div>
 
       <div className="mt-10">
