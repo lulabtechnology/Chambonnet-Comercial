@@ -222,6 +222,17 @@ export default function ContactForm() {
             >
               TikTok
             </a>
+            {CONTACT.YOUTUBE_URL ? (
+  <a
+    href={CONTACT.YOUTUBE_URL}
+    target="_blank"
+    rel="noreferrer"
+    className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
+  >
+    YouTube
+  </a>
+) : null}
+
             <a
               href={confirm.waUrl}
               target="_blank"
