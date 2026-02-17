@@ -1,10 +1,11 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import QuickWhatsAppForm from "@/components/QuickWhatsAppForm";
-import { CONTACT, SITE, whatsappLink } from "@/lib/site";
 import SocialLinks from "@/components/SocialLinks";
+import { CONTACT, SITE, whatsappLink } from "@/lib/site";
 import {
   IconBadgeCheck,
   IconBolt,
@@ -12,8 +13,9 @@ import {
   IconClipboard,
   IconHome,
   IconKey,
-  IconWrench
+  IconWrench,
 } from "@/components/Icons";
+
 export const metadata: Metadata = {
   title: "Consultores inmobiliarios en Panamá",
   description:
@@ -21,19 +23,19 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    locale: "es_PA",
+    locale: SITE.locale,
     url: "/",
     title: "Consultores inmobiliarios en Panamá | Chambonnet Comercial",
     description:
       "Compra, vende, alquila o administra propiedades en Panamá con procesos claros y atención personalizada. Mira propiedades en redes y contáctanos por WhatsApp.",
-    images: [{ url: "/og.jpg", width: 1200, height: 630, alt: "Chambonnet Comercial" }],
+    images: [{ url: SITE.ogImage, width: 1200, height: 630, alt: SITE.name }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Consultores inmobiliarios en Panamá | Chambonnet Comercial",
     description:
       "Compra, vende, alquila o administra propiedades en Panamá con procesos claros y atención personalizada. Mira propiedades en redes y contáctanos por WhatsApp.",
-    images: ["/og.jpg"],
+    images: [SITE.ogImage],
   },
 };
 
@@ -48,7 +50,7 @@ export default function Page() {
       <section id="inicio" className="relative overflow-hidden bg-brand-black text-white">
         <div className="absolute inset-0 opacity-60">
           {/* Imagen Desktop */}
-          <div className="hidden md:block h-full w-full">
+          <div className="hidden h-full w-full md:block">
             <Image
               src="/hero-desktop.jpg"
               alt="Propiedades en Panamá"
@@ -60,7 +62,7 @@ export default function Page() {
           </div>
 
           {/* Imagen Mobile */}
-          <div className="block md:hidden h-full w-full">
+          <div className="block h-full w-full md:hidden">
             <Image
               src="/hero-mobile.jpg"
               alt="Propiedades en Panamá"
@@ -79,13 +81,13 @@ export default function Page() {
         <div className="relative mx-auto max-w-6xl px-4 py-16 md:py-24">
           <div className="grid gap-10 md:grid-cols-2 md:items-center">
             <div>
-        <Reveal>
-  <div className="flex flex-col gap-3">
-    <p className="text-sm font-extrabold text-white/85">Síguenos y mira propiedades:</p>
-    <SocialLinks variant="hero" />
-  </div>
-</Reveal>
-
+              {/* Redes con iconos */}
+              <Reveal>
+                <div className="flex flex-col gap-3">
+                  <p className="text-sm font-extrabold text-white/85">Síguenos y mira propiedades:</p>
+                  <SocialLinks variant="hero" />
+                </div>
+              </Reveal>
 
               <Reveal delayMs={80}>
                 <h1 className="mt-4 text-3xl font-extrabold leading-tight md:text-5xl">
@@ -131,7 +133,7 @@ export default function Page() {
                 </div>
               </Reveal>
 
-              {/* ✅ CTA: WhatsApp verde */}
+              {/* CTA */}
               <Reveal delayMs={380}>
                 <div className="mt-10 flex flex-col gap-3 sm:flex-row">
                   <a
@@ -151,20 +153,16 @@ export default function Page() {
                   </a>
                 </div>
 
-                <p className="mt-4 text-xs text-white/70">
-                  Zonas fuertes (ejemplo): {SITE.zones.join(" / ")}.
-                </p>
+                <p className="mt-4 text-xs text-white/70">Zonas fuertes (ejemplo): {SITE.zones.join(" / ")}.</p>
               </Reveal>
             </div>
 
-            {/* ✅ HERO right: mini-form tipo referencia */}
+            {/* HERO right: mini-form */}
             <Reveal delayMs={220}>
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5 backdrop-blur">
                 <div className="flex items-center justify-between gap-3">
                   <p className="text-sm font-bold">Consulta rápida</p>
-                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">
-                    WhatsApp
-                  </span>
+                  <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-white/80">WhatsApp</span>
                 </div>
 
                 <p className="mt-3 text-sm text-white/80">
@@ -235,7 +233,7 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ✅ GALERÍA (usa tus imágenes) */}
+      {/* GALERÍA */}
       <section className="bg-black/[0.02]">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <Reveal>
@@ -309,15 +307,13 @@ export default function Page() {
         </div>
       </section>
 
-      {/* ✅ CTA INTERMEDIO (pedido por el cliente) */}
+      {/* CTA intermedio */}
       <section aria-label="CTA intermedio" className="border-y border-black/10 bg-brand-black text-white">
         <div className="mx-auto max-w-6xl px-4 py-10">
           <div className="grid gap-6 md:grid-cols-2 md:items-center">
             <div>
               <h2 className="text-2xl font-extrabold">¿Quieres comprar o alquilar? Contáctanos</h2>
-              <p className="mt-2 text-white/80">
-                Te acompañamos con pasos claros para avanzar con confianza.
-              </p>
+              <p className="mt-2 text-white/80">Te acompañamos con pasos claros para avanzar con confianza.</p>
             </div>
 
             <div className="flex flex-col gap-3 sm:flex-row sm:justify-end">
@@ -345,9 +341,7 @@ export default function Page() {
       <section id="tips" className="scroll-mt-24 bg-white">
         <div className="mx-auto max-w-6xl px-4 py-16">
           <Reveal>
-            <h2 className="text-2xl font-extrabold text-brand-black md:text-3xl">
-              Tips para comprar propiedades en Panamá
-            </h2>
+            <h2 className="text-2xl font-extrabold text-brand-black md:text-3xl">Tips para comprar propiedades en Panamá</h2>
           </Reveal>
           <Reveal delayMs={80}>
             <p className="mt-3 max-w-2xl text-black/70">
@@ -397,7 +391,6 @@ export default function Page() {
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-                    aria-label="Abrir Instagram"
                   >
                     Instagram
                   </a>
@@ -406,7 +399,6 @@ export default function Page() {
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-                    aria-label="Abrir Facebook"
                   >
                     Facebook
                   </a>
@@ -415,7 +407,6 @@ export default function Page() {
                     target="_blank"
                     rel="noreferrer"
                     className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-                    aria-label="Abrir TikTok"
                   >
                     TikTok
                   </a>
@@ -426,7 +417,6 @@ export default function Page() {
                       target="_blank"
                       rel="noreferrer"
                       className="rounded-xl border border-black/10 bg-white px-4 py-2 text-sm font-extrabold text-brand-black transition hover:bg-black/[0.03] focus:outline-none focus:ring-2 focus:ring-brand-red/40"
-                      aria-label="Abrir YouTube"
                     >
                       YouTube
                     </a>
@@ -465,7 +455,6 @@ export default function Page() {
               </div>
             </Reveal>
 
-            {/* ✅ LOGOS reales */}
             <Reveal delayMs={120}>
               <div className="rounded-2xl border border-black/10 bg-white p-6 shadow-soft">
                 <p className="text-sm font-extrabold text-brand-black">Miembros ACOBIR y MLS</p>
@@ -538,7 +527,6 @@ export default function Page() {
                 </p>
 
                 <div className="mt-6 flex flex-col gap-3 sm:flex-row">
-                  {/* ✅ botón WhatsApp verde */}
                   <a
                     href={waGeneric}
                     target="_blank"
@@ -574,7 +562,7 @@ export default function Page() {
 function ServiceCard({
   icon,
   title,
-  desc
+  desc,
 }: {
   icon: React.ReactNode;
   title: string;
